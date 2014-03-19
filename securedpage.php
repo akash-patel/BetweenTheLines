@@ -20,7 +20,11 @@
 	</head>
 
 	<body>
+
 		<?php
+		
+			//Display the user's information, as well as the the number of reservations and their current reservations.
+
 			$username = $_SESSION['username'];
 			$query = "SELECT firstname FROM user  WHERE username = '$username'";
 			$result = mysql_query($query);
@@ -28,11 +32,24 @@
 			if (!$result) die ("Database access failed: " . mysql_error());
 
 			echo 'Thank you for logging into your portal, ' . mysql_result($result, 0,'firstname') . '<br />';
-		?>
 
+			$query = "SELECT reservationid FROM reservations  WHERE username = '$username'";
+			$result = mysql_query($query);
 
-		Here are your current reservations:	
+			if (!$result) die ("Database access failed: " . mysql_error());
 
+			$rows = mysql_num_rows($result);
+
+			echo "You currently have $rows reservation(s)." . '<br />' . "Here are your current reservations:". '<br />';
+
+			for ($j = 0 ; $j < $rows ; ++$j)
+			{
+
+				echo 'ReservationID:' .  mysql_result($result, $j,'reservationid') . '<br />';
+
+			}
+			
+		?>	
 
 		<br /><br />Click on the button below to create a new reservation:<br /><br />
 		
