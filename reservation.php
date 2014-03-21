@@ -19,19 +19,19 @@
 	<body>
 
 	<div align="center">
-	
-		Please choose the type of vehicle you will be creating a reservation for: <br /><br />
-
-		<form>
-			<input type="radio" name="vehiclesize" value="Regular">Regular
-			<input type="radio" name="vehiclesize" value="Oversized">Oversized<br><br>
-		</form>
 
 		<form method="POST" action="reservation2.php">
+	
+			Please choose the type of vehicle you will be creating a reservation for:
 
-			Select a start time for your reservation:
+			<select name = "vehiclesize">
+				<option value="Regular">Regular</option>
+				<option value="Oversized">Oversized</option>
+			</select>
 
-			<select>
+			<br><br> Select a start time for your reservation:
+
+			<select name = "starttime">
 				<option value="12:00 AM">12:00 AM</option>
 				<option value="12:15 AM">12:15 AM</option>
 				<option value="12:30 AM">12:30 AM</option>
@@ -130,9 +130,9 @@
 				<option value="11:45 PM">11:45 PM</option>
 			</select>
 
-			<br> Select an end time for your reservation:
+			<br><br> Select an end time for your reservation:
 
-			<select>
+			<select name = "endtime">
 				<option value="12:00 AM">12:00 AM</option>
 				<option value="12:15 AM">12:15 AM</option>
 				<option value="12:30 AM">12:30 AM</option>
@@ -236,5 +236,8 @@
 		</form>
 
 	</div>
+
+	<p><a href="logout.php">Logout</a></p>
+
 	</body>
 </html>
