@@ -15,6 +15,8 @@
 	$lastname = $_POST[lastname];
 	$email = $_POST[email];
 
+	echo $username;
+
 	$query = "SELECT * FROM users  WHERE username = '$username'";
 	$result = mysql_query($query);
 
@@ -34,9 +36,15 @@
 		exit;
 	}
 
-	if ($username =! "" and $password != md5("") and $firstname != "" and $lastname != "" and $email != ""){
-		$value = mysql_query("INSERT INTO users (username, password, firstname, lastname, email) VALUES ('$username', '$password', '$firstname', '$lastname', 'email')");
+	if ($username != "" and $password != md5("") and $firstname != "" and $lastname != "" and $email != ""){
+
+		$query = "INSERT INTO users (username, password, firstname, lastname, email) VALUES ('$username', '$password', '$firstname', '$lastname', '$email')";
+		$result = mysql_query($query);
+
+		if (!$result) die ("Database access failed: " . mysql_error());
+
 		$_SESSION['username'] = $username;
+
 		header('Location: securedpage.php');
 	}
 	else{
