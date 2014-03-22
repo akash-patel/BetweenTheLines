@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2014 at 10:27 PM
+-- Generation Time: Mar 22, 2014 at 08:38 PM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.3
 
@@ -32,17 +32,22 @@ CREATE TABLE IF NOT EXISTS `reservations` (
   `username` varchar(25) NOT NULL,
   `reservationid` int(10) NOT NULL,
   `licenseplate` varchar(10) NOT NULL,
-  UNIQUE KEY `reservationid` (`reservationid`)
+  `starttime` time NOT NULL,
+  `endtime` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reservations`
 --
 
-INSERT INTO `reservations` (`username`, `reservationid`, `licenseplate`) VALUES
-('akash12321', 1, ''),
-('akash12321', 3, ''),
-('akash12321', 12321, 'NJXYZ123');
+INSERT INTO `reservations` (`username`, `reservationid`, `licenseplate`, `starttime`, `endtime`) VALUES
+('akash12321', 0, 'ABC123', '00:00:00', '00:00:00'),
+('akash12321', 0, '', '00:00:00', '00:00:00'),
+('akash12321', 0, 'NJXYZ123', '00:00:00', '00:00:00'),
+('akash12321', 4555, '', '01:50:00', '02:40:00'),
+('akash12321', 4555, '', '00:00:00', '02:00:00'),
+('akash12321', 4555, '', '02:30:00', '16:45:00'),
+('akash12321', 4555, '', '22:45:00', '19:15:00');
 
 -- --------------------------------------------------------
 
@@ -69,10 +74,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`username`, `password`, `firstname`, `lastname`, `email`) VALUES
 ('admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', '', ''),
 ('akash12321', '96ddd573da16901afb5be345cee64734', 'Akash', 'Patel', 'akashpatel712@yahoo.com'),
-('emanz13', '9dee45a24efffc78483a02cfcfd83433', 'Ian', 'zieder', 'emanz13@aol.com'),
-('', '', 'luciano', 'taranto', ''),
-('saucylion', 'd8578edf8458ce06fbc5bb76a58c5ca4', 'Mihail', 'Stantchev', 'mihailsports@yahoo.com'),
-('jj', '0421008445828ceb46f496700a5fa65e', 'sak', 'kjkj', 'jkn');
+('saucylion', 'd8578edf8458ce06fbc5bb76a58c5ca4', 'Mihail', 'Stantchev', 'mihailsports@yahoo.com');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

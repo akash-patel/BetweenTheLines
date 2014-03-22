@@ -27,7 +27,6 @@
 			Currently only the user's reservationIDs are pulled, we need to get it so that the user's other reservation
 			information is also displayed.*/
 
-
 			$username = $_SESSION['username'];
 			$query = "SELECT firstname FROM users  WHERE username = '$username'";
 			$result = mysql_query($query);
@@ -45,6 +44,7 @@
 
 			echo "You currently have $rows reservation(s)." . '<br /><br />' . "Here are your current reservations:". '<br />';
 
+			/*Print out the details of each of the user's reservations*/
 			for ($j = 0 ; $j < $rows ; ++$j)
 			{
 
