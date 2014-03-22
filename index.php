@@ -1,6 +1,6 @@
 <?php
 
-	// Inialize session
+	// Initialize session
 	session_start();
 
 	// Check, if user is already login, then jump to secured page
@@ -19,6 +19,17 @@
 		<div align="center">
 			<h1>Welcome to Between the Lines!</h1>
 			<h3>User Login</h3>
+
+			<font color="red">
+				<?php 
+					if (isset($_SESSION['error']))
+					{
+						echo $_SESSION['error'] . '<br /><br />';
+						$_SESSION['error'] = NULL;
+					}
+				?>
+			</font>
+
 			<table border="0">
 				<form method="POST" action="loginproc.php">
 					<tr><td>Username:</td><td><input type="text" name="username" size="20"></td></tr>
