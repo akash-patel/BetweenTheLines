@@ -11,7 +11,7 @@
 ?>
 
 <html>
-
+	<body style= "background-color: #F0F0F0 "></body>
 	<head>
 		<title>Between the Lines - Reserve, Pay, and Park!</title>
 	</head>

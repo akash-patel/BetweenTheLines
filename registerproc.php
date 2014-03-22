@@ -15,8 +15,6 @@
 	$lastname = $_POST[lastname];
 	$email = $_POST[email];
 
-	echo $username;
-
 	$query = "SELECT * FROM users  WHERE username = '$username'";
 	$result = mysql_query($query);
 
