@@ -26,6 +26,10 @@
 
 		<?php
 
+			function calculate_cost($time){
+				return $time / 360;
+			}
+
 			$vehiclesize = $_POST['vehiclesize'];
 			$starttime = $_POST['starttime'];
 			$endtime = $_POST['endtime'];
@@ -36,7 +40,9 @@
 
 			echo "You have selected to create reservation for a(n) " . strtolower($vehiclesize) . " sized vehicle is between " . $starttime . " and " . $endtime . ".<br /><br />";
 
-			echo "You will be charged for " . floor($time / 3600) . " hour(s) and " . ($time % 3600) / 60 . " minute(s) in the garage.";
+			echo "You will be charged for " . floor($time / 3600) . " hour(s) and " . ($time % 3600) / 60 . " minute(s) in the garage. ";
+
+			echo "The cost for this reservation will be $" . calculate_cost($time);
 
 			/*Code to insert reservation into the database
 			$query = "INSERT INTO reservations(username, reservationid, starttime,endtime) VALUES ('$username',$reservationid,'$starttime','$endtime')";
@@ -47,6 +53,16 @@
 		?>
 
 		<form method="POST" action="reservation3.php">
+
+			<font color="red">
+				<?php 
+					if (isset($_SESSION['error']))
+					{
+						echo '<br />' . $_SESSION['error'] . '<br />';
+						$_SESSION['error'] = NULL;
+					}
+				?>
+			</font>
 
 			<br>Please enter the license plate of your vehicle: <input type="text" name="licenseplate" size="7">
 
@@ -105,11 +121,11 @@
 				<option value="Wyoming">Wyoming</option>						
 			</select>
 
-			<br><br>Please enter your Credit Card number: <input type="text" name="creditcard" size="16">
+			<br><br>Please enter your Credit Card number: <input type="text" name="creditcard" size="16" maxlength="16">
 
-			<br><br>Please enter your CVV/CVV2 code: <input type="text" name="cvv" size="4">
+			<br><br>Please enter your CVV/CVV2 code: <input type="text" name="cvv" size="4" maxlength="4">
 
-			<br><br>Please enter your Credit Card's expiry date (MM | YY): <input type="text" name="ccmm" size="2"> | <input type="text" name="ccyy" size="2">
+			<br><br>Please enter your Credit Card's expiry date (MM | YY): <input type="text" name="ccmm" size="2" maxlength="2"> | <input type="text" name="ccyy" size="2" maxlength="2">
 
 			<br><br><input type="submit" value="Next">
 
