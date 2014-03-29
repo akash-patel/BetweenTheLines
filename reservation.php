@@ -33,6 +33,27 @@
 
 			<br><br> Select a start date for your reservation:
 
+			<select name = 'month'>
+				<option value="01">January</option>
+				<option value="02">Febrary</option>
+				<option value="03">March</option>
+				<option value="04">April</option>
+				<option value="04">May</option>
+				<option value="05">June</option>
+				<option value="06">July</option>
+				<option value="07">August</option>
+				<option value="08">September</option>
+				<option value="09">October</option>
+				<option value="010">November</option>
+				<option value="011">December</option>
+			</select>
+
+			<select name = 'Year'>
+				<option value="2014">2014</option>
+				<option value="2015">2015</option>
+			</select>
+				
+
 			<br><br> Select a start time for your reservation:
 
 			<select name = "starttime">
