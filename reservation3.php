@@ -46,16 +46,16 @@
 		function cc_type($cc){
 			$first_digit = substr($cc, 0, 1);
 
-			if ($first_digit == 4)
+			if ($first_digit == '4')
 				return "Visa ";
-			else if ($first_digit == 5)
+			else if ($first_digit == '5')
 				return "Mastercard ";	
-			else if ($first_digit == 6)
+			else if ($first_digit == '6')
 				return "Discover ";
-			else if  ($first_digit == 3)
+			else if  ($first_digit == '3')
 				return "American Express ";
 			else
-				return 0;
+				return "0";
 
 		}
 
@@ -67,7 +67,7 @@
 			exit;
 		}
 
-		if (cc_type($cc) == 0){
+		if (cc_type($cc) == "0"){
 			$_SESSION['error'] = 'You have entered a credit card number from a provider which is not accepted. Please use Visa, Mastercard, Discover, or American Express. Thank you.';
 			header('Location: reservation2.php');
 			exit;
@@ -113,15 +113,17 @@
 		
 	?>
 
-	<font color="red">Your reservation was successful!</font>
-	<br>Here are the details of your reservation:
+	<h3><font color="green">Your reservation was successful!</font></h3>
+	Here are the details of your reservation:
 
+	<br>ReservationID: <?php echo $reservationid;?>
 	<br>Start: <?php echo $startdatetime;?>
 	<br>End: <?php echo $enddatetime;?>
+	<br>License Plate: <?php echo $licenseplate;?>
 	<br>Credit Card: <?php echo cc_type($cc) .  "xxxxxxxxxxxx" . $last_4_digits;?>
 	<br>Cost: <?php echo '$' . $cost;?>
 
-	<br><input type="button" onClick="window.print()" value="Print This Page"/>
+	<br><br><input type="button" onClick="window.print()" value="Print This Page"/>
 
 	<p>Click <a href="securedpage.php">here</a> to return your portal.</p>
 	<p><a href="logout.php">Logout</a></p>
