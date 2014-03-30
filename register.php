@@ -44,8 +44,12 @@
 			<tr><td>&nbsp;</td><td><input type="submit" value="Register"></td></tr>
 			</form>
 		</table>
+
+		<a href="index.php">Back to Login</a>
 	</div>
 
+
 	</body>
+
 
 </html>
