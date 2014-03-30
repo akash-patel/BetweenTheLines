@@ -36,7 +36,7 @@
 
 			echo 'Thank you for logging into your portal, ' . mysql_result($result, 0,'firstname') . '.<br /><br />';
 
-			$query = "SELECT reservationid, licenseplate FROM reservations  WHERE username = '$username'";
+			$query = "SELECT * FROM reservations  WHERE username = '$username'";
 			$result = mysql_query($query);
 
 			if (!$result) die ("Database access failed: " . mysql_error());
@@ -50,7 +50,9 @@
 			{
 
 				echo 'ReservationID:' .  mysql_result($result, $j,'reservationid');
-				echo 'LicensePlate: ' .  mysql_result($result, $j,'licenseplate') . '<br />';
+				echo ' LicensePlate: ' .  mysql_result($result, $j,'licenseplate');
+				echo ' Reservation is between ' .  mysql_result($result, $j,'startdatetime');
+				echo ' and ' .  mysql_result($result, $j,'enddatetime') . '<br />';
 
 			}
 			

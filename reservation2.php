@@ -47,7 +47,7 @@
 			$endtime = $_POST['endtime'];
 
 			$username = $_SESSION['username'];
-			$reservationid = intval(strtotime("now"));
+			$reservationid = strtotime("now");
 			$_SESSION['reservationid'] = $reservationid;
 
 			//Format used below: YYYY-MM-DD HH:MM:SS
@@ -88,8 +88,8 @@
 
 				$rows = mysql_num_rows($result);
 
-				if ( $rows >= 2 ) { 
-					/*This number 2 should represent the maxmium number of spots 
+				if ( $rows >= 5 ) { 
+					/*This number 5 should represent the maxmium number of spots 
 					in the parking garage*/
 					$_SESSION['error'] = "Not enough room in the garage";
 					header('Location: reservation.php');
@@ -102,12 +102,6 @@
 			echo "You will be charged for " . floor($time / 3600) . " hour(s) and " . ($time % 3600) / 60 . " minute(s) in the garage. ";
 
 			echo "The cost for this reservation will be $" . calculate_cost($time);
-
-			//Code to insert reservation into the database
-			$query = "INSERT INTO reservations(username, reservationid, startdatetime,enddatetime, startdatetimesec, enddatetimesec) VALUES ('$username',$reservationid,'$startdatetime','$enddatetime', $startdatetimesec, $enddatetimesec)";
-			$result = mysql_query($query);
-			if (!$result) die ("Database access failed: " . mysql_error());
-			
 		?>
 
 		<form method="POST" action="reservation3.php">
@@ -183,7 +177,37 @@
 
 			<br><br>Please enter your CVV/CVV2 code: <input type="text" name="cvv" size="4" maxlength="4">
 
-			<br><br>Please enter your Credit Card's expiry date (MM | YY): <input type="text" name="ccmm" size="2" maxlength="2"> | <input type="text" name="ccyy" size="2" maxlength="2">
+			<br><br>Please enter your Credit Card's expiry date (MM | YY): 
+
+			<select name = 'ccmm'>
+				<option value="01">01</option>
+				<option value="02">02</option>
+				<option value="03">03</option>
+				<option value="04">04</option>
+				<option value="05">05</option>
+				<option value="06">06</option>
+				<option value="07">07</option>
+				<option value="08">08</option>
+				<option value="09">09</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>
+
+			<select name = 'ccyy'>
+				<option value="2014">14</option>
+				<option value="2015">15</option>
+				<option value="2016">16</option>
+				<option value="2017">17</option>
+				<option value="2018">18</option>
+				<option value="2019">19</option>
+				<option value="2020">20</option>
+				<option value="2021">21</option>
+				<option value="2022">22</option>
+				<option value="2023">23</option>
+				<option value="2024">24</option>
+			</select>
+
 
 			<br><br><input type="submit" value="Next">
 

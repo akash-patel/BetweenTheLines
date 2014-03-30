@@ -32,17 +32,12 @@
 			return $sum % 10 === 0;
 		}
 
-		function is_cc_expired($month,$year) {
+		function is_cc_expired($date) {
 			/*Returns 1 if expired*/
-			if ($year > 14)
-				return 0;
-			else if ($year < 14)
+			if (strtotime($date) < strtotime("now"))
 				return 1;
 			else
-				if ($month < 4) /*The system currently accepts credit cards expiring on or after April 2014*/
-					return 1;
-				else
-					return 0;
+				return 0;
 		}
 
 		function cc_type($cc){
@@ -87,14 +82,22 @@
 
 		$month = $_POST['ccmm'];
 		$year = $_POST['ccyy'];
+		$ccexpdate = $year . '-' . $month . '-' . '31';
 
-		if (is_cc_expired($month,$year)){
+
+		if (is_cc_expired($ccexpdate)){
 			$_SESSION['error'] = 'Your credit card is expired!';
 			header('Location: reservation2.php');
 			exit;
 		}
 
 		$last_4_digits = substr($cc, 12, 4);
+
+		/*Code to insert reservation into the database
+		$query = "INSERT INTO reservations(username, reservationid, state, licenseplate,startdatetime,enddatetime, startdatetimesec, enddatetimesec) VALUES ('$username',$reservationid,'$startdatetime','$enddatetime', $startdatetimesec, $enddatetimesec)";
+		$result = mysql_query($query);
+		if (!$result) die ("Database access failed: " . mysql_error());
+		*/
 
 	?>
 
@@ -105,6 +108,7 @@
 	<br>End Time:
 	<br>Credit Card: <?php echo cc_type($cc) .  "xxxxxxxxxxxx" . $last_4_digits;?>
 
+	<input type="button" onClick="window.print()" value="Print This Page"/>
 
 	<p>Click <a href="securedpage.php">here</a> to return your portal.</p>
 	<p><a href="logout.php">Logout</a></p>
