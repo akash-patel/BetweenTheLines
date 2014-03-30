@@ -27,16 +27,27 @@
 		<?php
 
 			function calculate_cost($time){
+				/*Cost is calculated at $10 an hour*/
 				return $time / 360;
 			}
 
 			$vehiclesize = $_POST['vehiclesize'];
+			$startmonth = $_POST['startmonth'];
+			$startday = $_POST['startday'];
+			$startyear = $_POST['startyear'];
 			$starttime = $_POST['starttime'];
+			$endmonth = $_POST['endmonth'];
+			$endday = $_POST['endday'];
+			$endyear = $_POST['endyear'];
 			$endtime = $_POST['endtime'];
 			$username = $_SESSION['username'];
 			$reservationid = 4555;
 
-			$time = strtotime($endtime) - strtotime($starttime);
+			//Format used below: YYYY-MM-DD HH:MM:SS[.fraction]
+			$startdatetime = $startyear . '-' . $startmonth . '-' . $startday . ' ' . $starttime;
+			$enddatetime = $endyear . '-' . $endmonth . '-' . $endday . ' ' . $endtime;
+
+			$time = strtotime($enddatetime) - strtotime($startdatetime);
 
 			echo "You have selected to create reservation for a(n) " . strtolower($vehiclesize) . " sized vehicle is between " . $starttime . " and " . $endtime . ".<br /><br />";
 
@@ -44,11 +55,11 @@
 
 			echo "The cost for this reservation will be $" . calculate_cost($time);
 
-			/*Code to insert reservation into the database
-			$query = "INSERT INTO reservations(username, reservationid, starttime,endtime) VALUES ('$username',$reservationid,'$starttime','$endtime')";
+			//Code to insert reservation into the database
+			$query = "INSERT INTO reservations(username, reservationid, startdatetime,enddatetime) VALUES ('$username',$reservationid,'$startdatetime','$enddatetime')";
 			$result = mysql_query($query);
 			if (!$result) die ("Database access failed: " . mysql_error());
-			*/
+			
 
 		?>
 
