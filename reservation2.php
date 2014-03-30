@@ -11,8 +11,6 @@
 		header('Location: index.php');
 	}
 
-	$_SESSION['error'] = NULL;
-
 ?>
 
 
@@ -34,33 +32,41 @@
 				return $time / 360;
 			}
 
-			$vehiclesize = $_POST['vehiclesize'];
-			$_SESSION['vehiclesize'] = $vehiclesize;
+			if (isset($_POST['vehiclesize'])){
 
-			$startmonth = $_POST['startmonth'];			
-			$startday = $_POST['startday'];
-			$startyear = $_POST['startyear'];
-			$starttime = $_POST['starttime'];
-			$endmonth = $_POST['endmonth'];
-			$endday = $_POST['endday'];
-			$endyear = $_POST['endyear'];
-			$endtime = $_POST['endtime'];
+				$vehiclesize = $_POST['vehiclesize'];
+				$_SESSION['vehiclesize'] = $vehiclesize;
+
+				$startmonth = $_POST['startmonth'];			
+				$startday = $_POST['startday'];
+				$startyear = $_POST['startyear'];
+				$starttime = $_POST['starttime'];
+				$endmonth = $_POST['endmonth'];
+				$endday = $_POST['endday'];
+				$endyear = $_POST['endyear'];
+				$endtime = $_POST['endtime'];
+
+				//Format used below: YYYY-MM-DD HH:MM:SS
+				$startdatetime = $startyear . '-' . $startmonth . '-' . $startday . ' ' . $starttime;
+				$_SESSION['startdatetime'] = $startdatetime;
+				$enddatetime = $endyear . '-' . $endmonth . '-' . $endday . ' ' . $endtime;
+				$_SESSION['enddatetime'] = $enddatetime;
+
+				$startdatetimesec = strtotime($startdatetime);
+				$_SESSION['startdatetimesec'] = $startdatetimesec;
+				$enddatetimesec = strtotime($enddatetime);
+				$_SESSION['enddatetimesec'] = $enddatetimesec;
+
+			}
 
 			$username = $_SESSION['username'];
-			$reservationid = strtotime("now");
-			$_SESSION['reservationid'] = $reservationid;
+			$vehiclesize = $_SESSION['vehiclesize'];
+			$startdatetime = $_SESSION['startdatetime'];
+			$enddatetime = $_SESSION['enddatetime'];
+			$startdatetimesec = $_SESSION['startdatetimesec'];
+			$enddatetimesec = $_SESSION['enddatetimesec'];
 
-			//Format used below: YYYY-MM-DD HH:MM:SS
-			$startdatetime = $startyear . '-' . $startmonth . '-' . $startday . ' ' . $starttime;
-			$_SESSION['startdatetime'] = $startdatetime;
-			$enddatetime = $endyear . '-' . $endmonth . '-' . $endday . ' ' . $endtime;
-			$_SESSION['enddatetime'] = $enddatetime;
-
-			$startdatetimesec = strtotime($startdatetime);
-			$enddatetimesec = strtotime($enddatetime);
-
-
-			$time = strtotime($enddatetime) - strtotime($startdatetime);
+			$time = $enddatetimesec - $startdatetimesec;
 
 			if ( $time <= 0) {
 
@@ -69,7 +75,7 @@
 				exit;			
 			}
 
-			if (strtotime($startdatetime) < strtotime("now")) {
+			if ( $startdatetimesec < strtotime("now") ) {
 
 				$_SESSION['error'] = "Error: Reservation must be in the future.";
 				header('Location: reservation.php');
@@ -97,10 +103,13 @@
 				}
 			}
 
-			echo "You have selected to create reservation for a(n) " . strtolower($vehiclesize) . " sized vehicle is between " . $starttime . " on " . $startmonth . '-' . $startday . '-' . $startyear . ' and ' . $endtime . " on " . $endmonth . '-' . $endday . '-' . $endyear . ".<br /><br />";
+			echo "You have selected to create reservation for a(n) " . strtolower($vehiclesize) . " sized vehicle is between " . $startdatetime. ' and ' . $enddatetime . ".<br /><br />";
 
 			echo "You will be charged for " . floor($time / 3600) . " hour(s) and " . ($time % 3600) / 60 . " minute(s) in the garage. ";
 
+			$cost = calculate_cost($time);
+			$_SESSION['cost'] = $cost;
+ 
 			echo "The cost for this reservation will be $" . calculate_cost($time);
 		?>
 

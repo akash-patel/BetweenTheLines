@@ -3,6 +3,9 @@
 	// Initialize session
 	session_start();
 
+	// Include database connection settings
+	include('config.inc');
+
 	// Check, if username session is NOT set then this page will jump to login page
 	if (!isset($_SESSION['username'])) {
 		header('Location: index.php');
@@ -93,22 +96,40 @@
 
 		$last_4_digits = substr($cc, 12, 4);
 
-		/*Code to insert reservation into the database
-		$query = "INSERT INTO reservations(username, reservationid, state, licenseplate,startdatetime,enddatetime, startdatetimesec, enddatetimesec) VALUES ('$username',$reservationid,'$startdatetime','$enddatetime', $startdatetimesec, $enddatetimesec)";
+		$username = $_SESSION['username'];
+		$reservationid = strtotime("now");
+		$licenseplate = $_POST['licenseplate'];
+		$state = $_POST['state'];
+		$startdatetime = $_SESSION['startdatetime'];
+		$enddatetime = $_SESSION['enddatetime'];
+		$startdatetimesec = $_SESSION['startdatetimesec'];
+		$enddatetimesec = $_SESSION['enddatetimesec'];
+		$cvv = $_POST['cvv'];
+		$cost = $_SESSION['cost'];
+
+
+		/*Code to insert reservation into the database*/
+		$query = "INSERT INTO reservations(username, reservationid, licenseplate, state, startdatetime, enddatetime, startdatetimesec, enddatetimesec, cc, cvv, ccexpdate) VALUES ('$username', $reservationid, '$licenseplate', '$state' , '$startdatetime','$enddatetime', $startdatetimesec, $enddatetimesec , '$cc' , $cvv , '$ccexpdate' )";
 		$result = mysql_query($query);
 		if (!$result) die ("Database access failed: " . mysql_error());
-		*/
 
+		$_SESSION['startdatetime'] = NULL;
+		$_SESSION['startdatetimesec'] = NULL;
+		$_SESSION['enddatetime'] = NULL;
+		$_SESSION['enddatetimesec'] = NULL;
+		$_SESSION['cost'] = NULL;
+		
 	?>
 
 	<font color="red">Your reservation was successful!</font>
 	<br>Here are the details of your reservation:
 
-	<br>Start Time:
-	<br>End Time:
+	<br>Start: <?php echo $startdatetime;?>
+	<br>End: <?php echo $enddatetime;?>
 	<br>Credit Card: <?php echo cc_type($cc) .  "xxxxxxxxxxxx" . $last_4_digits;?>
+	<br>Cost: <?php echo '$' . $cost;?>
 
-	<input type="button" onClick="window.print()" value="Print This Page"/>
+	<br><input type="button" onClick="window.print()" value="Print This Page"/>
 
 	<p>Click <a href="securedpage.php">here</a> to return your portal.</p>
 	<p><a href="logout.php">Logout</a></p>

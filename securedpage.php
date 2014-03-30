@@ -45,18 +45,33 @@
 
 			echo "You currently have $rows reservation(s)." . '<br /><br />' . "Here are your current reservations:". '<br />';
 
-			/*Print out the details of each of the user's reservations*/
-			for ($j = 0 ; $j < $rows ; ++$j)
-			{
-
-				echo 'ReservationID:' .  mysql_result($result, $j,'reservationid');
-				echo ' LicensePlate: ' .  mysql_result($result, $j,'licenseplate');
-				echo ' Reservation is between ' .  mysql_result($result, $j,'startdatetime');
-				echo ' and ' .  mysql_result($result, $j,'enddatetime') . '<br />';
-
-			}
-			
 		?>	
+
+		<table style="width:600px">
+			
+			<tr>
+		
+				<td><b>Reservation ID</b></td>
+				<td><b>License Plate</b></td>
+				<td><b>Start Date and Time</b></td>
+				<td><b>End Date and Time</b></td>
+				
+			</tr>
+			
+			<!-- Print out the details of each of the user's reservations-->
+
+			<?php for ($j = 0 ; $j < $rows ; ++$j){ ?>
+
+				<tr>
+					<td><?php echo mysql_result($result, $j,'reservationid'); ?></td>
+					<td><?php echo mysql_result($result, $j,'licenseplate'); ?></td>
+					<td><?php echo mysql_result($result, $j,'startdatetime'); ?></td>
+					<td><?php echo mysql_result($result, $j,'enddatetime'); ?></td>
+				</tr>
+
+			<?php } ?>
+			
+		</table>
 
 		<br /><br />Click on the button below to create a new reservation:<br /><br />
 		
