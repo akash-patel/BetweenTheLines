@@ -11,6 +11,8 @@
 		header('Location: index.php');
 	}
 
+	$_SESSION['error'] = NULL;
+
 ?>
 
 
@@ -23,6 +25,7 @@
 	<body>
 
 	<div align="center">
+
 
 		<?php
 
@@ -49,7 +52,21 @@
 
 			$time = strtotime($enddatetime) - strtotime($startdatetime);
 
-			echo "You have selected to create reservation for a(n) " . strtolower($vehiclesize) . " sized vehicle is between " . $starttime . " and " . $endtime . ".<br /><br />";
+			if ( $time <= 0) {
+
+				$_SESSION['error'] = "Error: Invalid reservation time range.";
+				header('Location: reservation.php');
+				exit;			
+			}
+
+			if (strtotime($startdatetime) < strtotime("now")) {
+
+				$_SESSION['error'] = "Error: Reservation must be in the future.";
+				header('Location: reservation.php');
+				exit;
+			}
+
+			echo "You have selected to create reservation for a(n) " . strtolower($vehiclesize) . " sized vehicle is between " . $starttime . " on " . $startmonth . '-' . $startday . '-' . $startyear . ' and ' . $endtime . " on " . $endmonth . '-' . $endday . '-' . $endyear . ".<br /><br />";
 
 			echo "You will be charged for " . floor($time / 3600) . " hour(s) and " . ($time % 3600) / 60 . " minute(s) in the garage. ";
 

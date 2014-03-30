@@ -18,9 +18,19 @@
 	<head>
 		<title>Reservation - Between the Lines</title>
 	</head>
-	<body>
+	<body>	
 
 	<div align="center">
+
+		<font color="red">
+			<?php 
+				if (isset($_SESSION['error']))
+				{
+					echo $_SESSION['error'] . '<br /><br />';
+					$_SESSION['error'] = NULL;
+				}
+			?>
+		</font>
 
 		<form method="POST" action="reservation2.php">
 	
