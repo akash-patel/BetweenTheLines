@@ -37,6 +37,7 @@
 			Please choose the type of vehicle you will be creating a reservation for:
 
 			<select name = "vehiclesize">
+				<option value='-1'>Size</option>
 				<option value="Regular">Regular</option>
 				<option value="Oversized">Oversized</option>
 			</select>
@@ -44,6 +45,7 @@
 			<br><br> Select a start date for your reservation:
 
 			<select name = 'startmonth'>
+				<option value='-1'>Month</option>
 				<option value="01">January</option>
 				<option value="02">Febrary</option>
 				<option value="03">March</option>
@@ -59,6 +61,7 @@
 			</select>
 
 			<select name = "startday">
+				<option value = "-1">Day</option>
                 <option value = "01">1</option>
                 <option value = "02">2</option>
                 <option value = "03">3</option>
@@ -93,6 +96,7 @@
             </select>
 
 			<select name = 'startyear'>
+				<option value='-1'>Year</option>
 				<option value="2014">2014</option>
 				<option value="2015">2015</option>
 			</select>
@@ -101,6 +105,7 @@
 			<br><br> Select a start time for your reservation:
 
 			<select name = "starttime">
+				<option value='-1'>Start Time</option>
 				<option value="00:00:00">12:00 AM</option>
 				<option value="00:15:00">12:15 AM</option>
 				<option value="00:30:00">12:30 AM</option>
@@ -202,6 +207,7 @@
 			<br><br> Select an end date for your reservation:
 
 			<select name = 'endmonth'>
+				<option value='-1'>Month</option>
 				<option value="01">January</option>
 				<option value="02">Febrary</option>
 				<option value="03">March</option>
@@ -217,6 +223,7 @@
 			</select>
 
 			<select name = "endday">
+				<option value='-1'>Day</option>
                 <option value = "01">1</option>
                 <option value = "02">2</option>
                 <option value = "03">3</option>
@@ -251,6 +258,7 @@
             </select>
 
 			<select name = 'endyear'>
+				<option value='-1'>Year</option>
 				<option value="2014">2014</option>
 				<option value="2015">2015</option>
 			</select>
@@ -258,6 +266,7 @@
 			<br><br> Select an end time for your reservation:
 
 			<select name = "endtime">
+				<option value='-1'>End Time</option>
 				<option value="00:00:00">12:00 AM</option>
 				<option value="00:15:00">12:15 AM</option>
 				<option value="00:30:00">12:30 AM</option>

@@ -57,6 +57,12 @@
 				$enddatetimesec = strtotime($enddatetime);
 				$_SESSION['enddatetimesec'] = $enddatetimesec;
 
+				if ( $vehiclesize == '-1' or $startmonth == '-1' or $startday == '-1' or $startyear == '-1' or $starttime == '-1' or $endmonth == '-1' or $endday == '-1' or $endyear == '-1' or $endtime == '-1') {
+					$_SESSION['error'] = "Error: Please enter all fields.";
+					header('Location: reservation.php');
+					exit;
+				}
+
 			}
 
 			$username = $_SESSION['username'];
@@ -67,6 +73,8 @@
 			$enddatetimesec = $_SESSION['enddatetimesec'];
 
 			$time = $enddatetimesec - $startdatetimesec;
+
+			
 
 			if ( $time <= 0) {
 
@@ -125,7 +133,7 @@
 				?>
 			</font>
 
-			<br>Please enter the license plate of your vehicle: <input type="text" name="licenseplate" size="7">
+			<br>Please enter the license plate of your vehicle: <input type="text" name="licenseplate" size="10" maxlength="7">
 
 			<br><br>Please select the state of your vehicle's license plate:
 			<select name = "state">
@@ -182,7 +190,7 @@
 				<option value="Wyoming">Wyoming</option>						
 			</select>
 
-			<br><br>Please enter your Credit Card number: <input type="text" name="creditcard" size="16" maxlength="16">
+			<br><br>Please enter your Credit Card number: <input type="text" name="creditcard" size="20" maxlength="16">
 
 			<br><br>Please enter your CVV/CVV2 code: <input type="text" name="cvv" size="4" maxlength="4">
 

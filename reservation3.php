@@ -48,29 +48,13 @@
 
 			if ($first_digit == 4)
 				return "Visa ";
-			else if ($first_digit == 5){
-				
-				$second_digit = substr($cc, 1, 1);
-
-				if ($second_digit >= 1 and $second_digit <= 5)
-					return "Mastercard ";
-				else
-					return 0;
-			}else if ($first_digit == 6){
-				$second_to_fourth_digits = substr($cc, 1, 3);
-
-				if($second_to_fourth_digits == 011 or ($second_to_fourth_digits >= 440 and $second_to_fourth_digits <= 449) or ($second_to_fourth_digits >= 500 and $second_to_fourth_digits <= 599))
-					return "Discover ";
-				else
-					return 0;
-			}else if  ($first_digit == 3){
-				$second_digit = substr($cc, 1, 1);
-
-				if($second_digit == 4 or $second_digit == 7)
-					return "American Express ";
-				else
-					return 0;
-			}else
+			else if ($first_digit == 5)
+				return "Mastercard ";	
+			else if ($first_digit == 6)
+				return "Discover ";
+			else if  ($first_digit == 3)
+				return "American Express ";
+			else
 				return 0;
 
 		}
@@ -82,6 +66,14 @@
 			header('Location: reservation2.php');
 			exit;
 		}
+
+		if (cc_type($cc) == 0){
+			$_SESSION['error'] = 'You have entered a credit card number from a provider which is not accepted. Please use Visa, Mastercard, Discover, or American Express. Thank you.';
+			header('Location: reservation2.php');
+			exit;
+		}
+
+
 
 		$month = $_POST['ccmm'];
 		$year = $_POST['ccyy'];
