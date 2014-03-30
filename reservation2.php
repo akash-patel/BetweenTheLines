@@ -35,7 +35,9 @@
 			}
 
 			$vehiclesize = $_POST['vehiclesize'];
-			$startmonth = $_POST['startmonth'];
+			$_SESSION['vehiclesize'] = $vehiclesize;
+
+			$startmonth = $_POST['startmonth'];			
 			$startday = $_POST['startday'];
 			$startyear = $_POST['startyear'];
 			$starttime = $_POST['starttime'];
@@ -43,12 +45,20 @@
 			$endday = $_POST['endday'];
 			$endyear = $_POST['endyear'];
 			$endtime = $_POST['endtime'];
-			$username = $_SESSION['username'];
-			$reservationid = 4555;
 
-			//Format used below: YYYY-MM-DD HH:MM:SS[.fraction]
+			$username = $_SESSION['username'];
+			$reservationid = intval(strtotime("now"));
+			$_SESSION['reservationid'] = $reservationid;
+
+			//Format used below: YYYY-MM-DD HH:MM:SS
 			$startdatetime = $startyear . '-' . $startmonth . '-' . $startday . ' ' . $starttime;
+			$_SESSION['startdatetime'] = $startdatetime;
 			$enddatetime = $endyear . '-' . $endmonth . '-' . $endday . ' ' . $endtime;
+			$_SESSION['enddatetime'] = $enddatetime;
+
+			$startdatetimesec = strtotime($startdatetime);
+			$enddatetimesec = strtotime($enddatetime);
+
 
 			$time = strtotime($enddatetime) - strtotime($startdatetime);
 
@@ -66,6 +76,27 @@
 				exit;
 			}
 
+			/* time/900 represents the number of 15 minute intervals. This is because
+			time is in seconds and the 15 minutes is 900 seconds*/
+			for ($i = $startdatetimesec; $i < $enddatetimesec ; $i+=900) {
+
+				$j = $i + 900;
+				
+				$query = "SELECT * FROM reservations WHERE startdatetimesec < $j AND enddatetimesec > $i";
+				$result = mysql_query($query);
+				if (!$result) die ("Database access failed: " . mysql_error());
+
+				$rows = mysql_num_rows($result);
+
+				if ( $rows >= 2 ) { 
+					/*This number 2 should represent the maxmium number of spots 
+					in the parking garage*/
+					$_SESSION['error'] = "Not enough room in the garage";
+					header('Location: reservation.php');
+					exit;
+				}
+			}
+
 			echo "You have selected to create reservation for a(n) " . strtolower($vehiclesize) . " sized vehicle is between " . $starttime . " on " . $startmonth . '-' . $startday . '-' . $startyear . ' and ' . $endtime . " on " . $endmonth . '-' . $endday . '-' . $endyear . ".<br /><br />";
 
 			echo "You will be charged for " . floor($time / 3600) . " hour(s) and " . ($time % 3600) / 60 . " minute(s) in the garage. ";
@@ -73,11 +104,10 @@
 			echo "The cost for this reservation will be $" . calculate_cost($time);
 
 			//Code to insert reservation into the database
-			$query = "INSERT INTO reservations(username, reservationid, startdatetime,enddatetime) VALUES ('$username',$reservationid,'$startdatetime','$enddatetime')";
+			$query = "INSERT INTO reservations(username, reservationid, startdatetime,enddatetime, startdatetimesec, enddatetimesec) VALUES ('$username',$reservationid,'$startdatetime','$enddatetime', $startdatetimesec, $enddatetimesec)";
 			$result = mysql_query($query);
 			if (!$result) die ("Database access failed: " . mysql_error());
 			
-
 		?>
 
 		<form method="POST" action="reservation3.php">
