@@ -1,144 +1,146 @@
 <HTML>
 <div align="center">
-<h1>Photosensor Simulation</h1>
+<h1>Photosensor simulation</h1>
 
 Occupancy for floor 
+<?php 
+	session_start();	
+	include('config.inc');
+	
+	echo $_SESSION['floor'];
+	$query = "SELECT psensorid FROM occupancy";
+	$query2= "SELECT istaken FROM occupancy";
+	$result = mysql_query($query);
+	$result2 = mysql_query($query2);
+	$array = Array();
+	$array2 = Array();
+	$array3 = Array();
+	while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+    $array[] =  $row['psensorid'];  
+	}
+	while ($row = mysql_fetch_array($result2, MYSQL_ASSOC)) {
+    $array2[] =  $row['istaken'];  
+	}
+	$title='Available Spots';
+function print_array($title,$array){
 
-<?php session_start(); echo $_SESSION['floor']; ?>
+        if(is_array($array)){
+
+            echo $title."<br/>".
+            "||---------------------------------||<br/>".
+            "<pre>";
+            print_r($array); 
+            echo "</pre>".
+            "END ".$title."<br/>".
+            "||---------------------------------||<br/>";
+
+        }else{
+             echo $title." is not an array.";
+        }
+}
+for ($i=0; $i <44; $i++)
+{
+if (($array[$i]-($_SESSION['floor']*100) <10) && ($array[$i]-($_SESSION['floor']*100) >=0))
+{
+	if ($array2[$i] == 0)
+	{
+		$array3[]= ($array[$i]-($_SESSION['floor']*100)-1);
+	}
+}
+}
+$array3[]=100;
+$array3[]=100;
+$array3[]=100;
+$array3[]=100;
+$array3[]=100;
+$array3[]=100;
+$array3[]=100;
+$array3[]=100;
+$array3[]=100;
+//prints all the available spots
+//print_array($title,$array3);
+?>
+
+
 
 <script type="text/javascript" >
+<!--
 
-	function btnClick(checkedValue) 
-	{
-		var x = document.getElementById("mytable").getElementsByTagName("td");
-
-		if (x[checkedValue].style.backgroundColor == "green")
-		{
-			x[checkedValue].style.backgroundColor = "red";
+function btnClick(checkedValue) {
+		if (checkedValue==100){
+		return;
 		}
+		var x = document.getElementById("mytable").getElementsByTagName("td");
+		
+		if (x[checkedValue].style.backgroundColor == "green")
+			{
+				x[checkedValue].style.backgroundColor = "red";
+			}
 		else
-		{
-			x[checkedValue].style.backgroundColor = "green";          
-		}		
-	}
+			{
+				x[checkedValue].style.backgroundColor = "green";          
+			}	
+	
+}
 </script>
 
-<style>
-div
-{
-	text-align: center; 
-	text-indent: 0px; 
-	padding: 0px 0px 0px 0px; 
-	margin: 0px 0px 0px 0px;
-}
+ <style>
+    div
+    {
+    text-align: center; 
+    text-indent: 0px; 
+    padding: 0px 0px 0px 0px; 
+    margin: 0px 0px 0px 0px;
+    }
+    td.td
+    {
+                 border-width : 1px; 
+                 background-color: #FF0000;
+                 text-align:center;
 
-td.td
-{
-	border-width : 1px;
-	background-color: #FF0000;
-	text-align:center;
-}
-</style>  
+    }
+    </style>  
+	Green Spots are available. Red Spots are taken.
 
-<body>
-	<div>  
+	
+  <body onload="btnClick(<?php echo $array3[0]; ?>);btnClick(<?php echo $array3[1]; ?>);btnClick(<?php echo $array3[2];?>);btnClick(<?php echo $array3[3]; ?>);btnClick(<?php echo $array3[4]; ?>);btnClick(<?php echo $array3[5]; ?>);btnClick(<?php echo $array3[6]; ?>);btnClick(<?php echo $array3[7]; ?>);btnClick(<?php echo $array3[8]; ?>);">
 
-	<?php
-
-		// Include database connection settings
-		include('../config.inc');
-		$_SESSION['error'] = NULL;
-		
-		echo "<table id = \"mytable\" width=\"100%\" border=\"1\" cellpadding=\"3\" cellspacing=\"2\" style=\"background-color:#ffffff;\">";
-		echo "<tr valign=\"top\">";
-
-		$floor = $_SESSION['floor'];
-
-		for($i = 1; $i <= 3; $i++)
-		{
-			$sensorid = $floor . "0" . $i;
-
-			$query = "SELECT istaken FROM occupancy WHERE psensorid='$sensorid'";
-			$result = mysql_query($query);
-			if (!$result) die ("Database access failed: " . mysql_error());
-
-			$ans = mysql_result($result, 0,'istaken');
-				
-			switch($ans)
-			{
-				case "0":
-					echo '<td class = \'td\' OnClick = \'btnClick(' . ($i-1) . ')\'  style=\'background-color:green\'><br /> Spot '.$i.' </td>';
-					break;
-				case "1":
-					echo '<td class = \'td\' OnClick = \'btnClick(' . ($i-1) . ')\'  style=\'background-color:red\'><br /> Spot '.$i.' </td>';
-					break;
-				default:
-					echo "fail";
-					break;
-			}
-		}
-
-		echo "</tr>";
-		echo "<tr valign=\"top\">";
-
-		for($i = 4; $i <= 6; $i++)
-		{
-			$sensorid = $floor . "0" . $i;
-
-			$query = "SELECT istaken FROM occupancy WHERE psensorid='$sensorid'";
-			$result = mysql_query($query);
-			if (!$result) die ("Database access failed: " . mysql_error());
-
-			$ans = mysql_result($result, 0,'istaken');
-
-			switch($ans)
-			{
-				case "0":
-					echo '<td class = \'td\' OnClick = \'btnClick(' . ($i-1) . ')\'  style=\'background-color:green\'><br /> Spot '.$i.' </td>';
-					break;
-				case "1":
-					echo '<td class = \'td\' OnClick = \'btnClick(' . ($i-1) . ')\'  style=\'background-color:red\'><br /> Spot '.$i.' </td>';
-					break;
-				default:
-					echo "fail";
-					break;			}
-		}
-
-		echo "</tr>";
-		echo "<tr valign=\"top\">";
-
-		for($i = 7; $i <= 9; $i++)
-		{
-			$sensorid = $floor . "0" . $i;
-
-			$query = "SELECT istaken FROM occupancy WHERE psensorid='$sensorid'";
-			$result = mysql_query($query);
-			if (!$result) die ("Database access failed: " . mysql_error());
-
-			$ans = mysql_result($result, 0,'istaken');
-
-			switch($ans)
-			{
-				case "0":
-					echo '<td class = \'td\' OnClick = \'btnClick(' . ($i-1) . ')\'  style=\'background-color:green\'><br /> Spot '.$i.' </td>';
-					break;
-				case "1":
-					echo '<td class = \'td\' OnClick = \'btnClick(' . ($i-1) . ')\'  style=\'background-color:red\'><br /> Spot '.$i.' </td>';
-					break;
-				default:
-					echo "fail";
-					break;
-			}
-		}
-
-		echo "</tr>";
-		echo "</table";
+  
 
 
-	?>
-	</div>
-	<br>
+  <div>  
 
-	</body>
+	<form method="POST" action="updateoccupancy.php">
+    <table id = "mytable" width="100%" border="1" cellpadding="3" cellspacing="2" style="background-color: #ffffff;">
+      <tr valign="top">
+      <td class = "td" ><input type="submit" name="spot" value="1" /><br />  </td>
+      <td class = "td" ><input type="submit" name="spot" value="2" /><br />  </td>
+	  <td class = "td" ><input type="submit" name="spot" value="3" /><br />  </td>
+      </tr>
+      <tr valign="top">
+      <td class = "td" ><input type="submit" name="spot" value="4" /><br />  </td>
+      <td class = "td" ><input type="submit" name="spot" value="5" /><br />  </td>
+	  <td class = "td" ><input type="submit" name="spot" value="6" /><br />  </td>
+      </tr>
+	  <tr valign="top">
+      <td class = "td" ><input type="submit" name="spot" value="7" /><br />  </td>
+      <td class = "td" ><input type="submit" name="spot" value="8" /><br />  </td>
+	  <td class = "td" ><input type="submit" name="spot" value="9" /><br />  </td>
+      </tr>
+    </table>
+	</form>
+  </div>
+</tr>
+<br>
+<?php 
+
+					if (isset($_SESSION['update']))
+					{
+						echo $_SESSION['update'] . '<br /><br />';
+						$_SESSION['update'] = NULL;
+					}
+?>
+  </body>
+</html>
 </div>
 </HTML>
