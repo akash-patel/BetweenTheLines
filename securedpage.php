@@ -75,10 +75,21 @@
 
 		<br>
 		<form method="POST" action="deletereservation.php">
-		To Delete a reservation, type the Reservation number in the box and press Delete:<br>
-		ReservationID: <input type="text" name="reservationID" size="10" maxlength="10">
+		To delete a reservation, type the Reservation ID in the box and press Delete:<br>
+		Reservation ID: <input type="text" name="reservationID" size="10" maxlength="10">
 		<input type="submit" value="Delete">
 		</form>
+		
+		<!--Prints an error if incorrect ReservationID -->
+		<font color="red">
+			<?php 
+				if (isset($_SESSION['error']))
+				{
+					echo $_SESSION['error'] . '<br /><br />';
+					$_SESSION['error'] = NULL;
+				}
+			?>
+		</font>
 
 
 		<br /><br />Click on the button below to create a new reservation:<br /><br />
