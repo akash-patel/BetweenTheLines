@@ -12,11 +12,10 @@ This code can be hosted locally using a program like XAMPP to host an Apache and
 The website is also hosted and can be accessed via http://whiteledge.com which is periodically updated.
 
 Current features that have been implemented in the design include:
+
 -Registration
 
--Reservation
---Creating
---Deleting
+-Reservation (Creating & Deleting)
 
 -Elevator Simulation
 
