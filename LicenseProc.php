@@ -8,15 +8,14 @@
 
 	$_SESSION['error'] = NULL;
 	$lc=$_POST['lname'];
-	
-
+	$level=$_POST['floor'];
 	// Retrieve row from database according to user's input
 	$query = "SELECT * FROM reservations  WHERE licenseplate = '$lc'";
 			$result = mysql_query($query);
 	if (!$result) die ("Database access failed: " . mysql_error());
 	
 	if (mysql_num_rows($result) == 1) {
-
+		$_SESSION['floor']=$level;
 		header('Location: Fourth.php');
 	}
 	else {
