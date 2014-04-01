@@ -102,7 +102,7 @@
 
 				$rows = mysql_num_rows($result);
 
-				if ( $rows >= 5 ) { 
+				if ( $rows > 5 ) { 
 					/*This number 5 should represent the maxmium number of spots 
 					in the parking garage*/
 					$_SESSION['error'] = "Not enough room in the garage";

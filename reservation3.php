@@ -121,7 +121,7 @@
 	<br>End: <?php echo $enddatetime;?>
 	<br>License Plate: <?php echo $licenseplate;?>
 	<br>Credit Card: <?php echo cc_type($cc) .  "xxxxxxxxxxxx" . $last_4_digits;?>
-	<br>Cost: <?php echo '$' . $cost;?>
+	<br><b>Cost: <?php echo '$' . $cost;?></b>
 
 	<br><br><input type="button" onClick="window.print()" value="Print This Page"/>
 
