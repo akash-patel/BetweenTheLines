@@ -30,9 +30,9 @@
 	$rows_final = mysql_num_rows($result);
 
 	if ($rows_init == $rows_final)
-		$_SESSION['error'] = "The ReservationID entered is either not yours to delete or does not exist.";
+		$_SESSION['error'] = 'The Reservation ID entered is either not yours to delete or does not exist.';
 	else
-		$_SESSION['error'] = "The ReservationID entered has been deleted.";
+		$_SESSION['success'] = 'The Reservation ID entered has been deleted.';
 
 	header('Location: securedpage.php');
 	exit;

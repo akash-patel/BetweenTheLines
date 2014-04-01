@@ -43,44 +43,60 @@
 
 			$rows = mysql_num_rows($result);
 
-			echo "You currently have $rows reservation(s)." . '<br /><br />' . "Here are your current reservations:". '<br />';
+			echo "You currently have $rows reservation(s)." . '<br /><br />';
 
 		?>	
-
-		<table style="width:600px">
-			
-			<tr>
+		<?php if ($rows != 0) { //don't display table if there are no reservations?> 
 		
-				<td><b>Reservation ID</b></td>
-				<td><b>License Plate</b></td>
-				<td><b>Start Date and Time</b></td>
-				<td><b>End Date and Time</b></td>
+			Here are your current reservations:
+
+			<table style="width:600px">
 				
-			</tr>
-			
-			<!-- Print out the details of each of the user's reservations-->
-
-			<?php for ($j = 0 ; $j < $rows ; ++$j){ ?>
-
 				<tr>
-					<td><?php echo mysql_result($result, $j,'reservationid'); ?></td>
-					<td><?php echo mysql_result($result, $j,'licenseplate'); ?></td>
-					<td><?php echo mysql_result($result, $j,'startdatetime'); ?></td>
-					<td><?php echo mysql_result($result, $j,'enddatetime'); ?></td>
-				</tr>
-
-			<?php } ?>
 			
-		</table>
+					<td><b>Reservation ID</b></td>
+					<td><b>License Plate</b></td>
+					<td><b>Start Date and Time</b></td>
+					<td><b>End Date and Time</b></td>
+					
+				</tr>
+				
+				<!-- Print out the details of each of the user's reservations-->
 
-		<br>
-		<form method="POST" action="deletereservation.php">
-		To delete a reservation, type the Reservation ID in the box and press Delete:<br>
-		Reservation ID: <input type="text" name="reservationID" size="10" maxlength="10">
-		<input type="submit" value="Delete">
-		</form>
+				<?php for ($j = 0 ; $j < $rows ; ++$j){ ?>
+
+					<tr>
+						<td><?php echo mysql_result($result, $j,'reservationid'); ?></td>
+						<td><?php echo mysql_result($result, $j,'licenseplate'); ?></td>
+						<td><?php echo mysql_result($result, $j,'startdatetime'); ?></td>
+						<td><?php echo mysql_result($result, $j,'enddatetime'); ?></td>
+					</tr>
+
+				<?php } ?>
+				
+			</table>
+
+
+			<br>
+			<form method="POST" action="deletereservation.php">
+			To delete a reservation, type the Reservation ID in the box and press Delete:<br>
+			Reservation ID: <input type="text" name="reservationID" size="10" maxlength="10">
+			<input type="submit" value="Delete">
+			</form>
+			
+		<?php } //end if statement ?>
 		
 		<!--Prints an error if incorrect ReservationID -->
+		<font color="green">
+			<?php 
+				if (isset($_SESSION['success']))
+				{
+					echo $_SESSION['success'] . '<br /><br />';
+					$_SESSION['success'] = NULL;
+				}
+			?>
+		</font>
+
 		<font color="red">
 			<?php 
 				if (isset($_SESSION['error']))
@@ -90,7 +106,6 @@
 				}
 			?>
 		</font>
-
 
 		<br /><br />Click on the button below to create a new reservation:<br /><br />
 		
