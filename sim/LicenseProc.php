@@ -14,7 +14,7 @@
 			$result = mysql_query($query);
 	if (!$result) die ("Database access failed: " . mysql_error());
 	
-	if (mysql_num_rows($result) == 1) {
+	if (mysql_num_rows($result) >= 1) {
 		$query = "SELECT SUBSTRING(psensorid,1,1) FROM occupancy WHERE istaken='0' LIMIT 1";
 		$result = mysql_query($query);
 		if (!$result) die ("Database access failed: " . mysql_error());
