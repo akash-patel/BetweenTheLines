@@ -1,6 +1,7 @@
 <HTML>
+<title>Simulation: License Plate Scanner</title> 
 <div align="center">
-	<P> Simulate License Plate Scanner</P>
+	<h1> Simulate License Plate Scanner</h1>
 		Please select the state of your vehicle's license plate:
 			<select name = "state">
 				<option value="Alabama">Alabama</option>
@@ -57,7 +58,7 @@
 			</select>	
 <form method="POST" action="LicenseProc.php">
 	Enter License Plate: <input type="text" name="lname"><br>
-	Enter Floor: <input type="text" name="floor"><br>
+	<!--Enter Floor: <input type="text" name="floor"><br>-->
 	<input name="newThread2" type="submit" value="Submit"/>
 </form>
 			<font color="red">

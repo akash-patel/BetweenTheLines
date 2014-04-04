@@ -1,11 +1,12 @@
 <HTML>
+<title>Simulation: Photosensor</title>
 <div align="center">
 <h1>Photosensor simulation</h1>
 
 Occupancy for floor 
 <?php 
 	session_start();	
-	include('config.inc');
+	include('../config.inc');
 	
 	echo $_SESSION['floor'];
 	$query = "SELECT psensorid FROM occupancy";
@@ -64,7 +65,7 @@ $array3[]=100;
 
 
 <script type="text/javascript" >
-<!--
+
 
 function btnClick(checkedValue) {
 		if (checkedValue==100){
@@ -99,7 +100,7 @@ function btnClick(checkedValue) {
                  text-align:center;
 
     }
-    </style>  
+    </style><br>  
 	Green Spots are available. Red Spots are taken.
 
 	
@@ -129,7 +130,23 @@ function btnClick(checkedValue) {
       </tr>
     </table>
 	</form>
-  </div>
+
+	<form action="Third.php">
+	<input name="return" type="submit" value="Return to License Scanner"/>
+	</form>
+
+	<b>ADMIN ACTIONS: <br/></b>
+	<form method="POST" action="adminProc.php">
+	  Choose a floor: <select name = "floor">
+	    <option value="1">1</option>
+	    <option value="2">2</option>
+	    <option value="3">3</option>
+	    <option value="4">4</option>
+	    <option value="5">5</option>
+	  </select>
+	  
+	  <input name="changeFloor" type="submit" value="Submit"/>
+ </div>
 </tr>
 <br>
 <?php 

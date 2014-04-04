@@ -37,8 +37,7 @@
 					<tr><td>&nbsp;</td><td><input type="submit" value="Login">
 				</form>
 				<form method="POST" action="register.php"><input type="submit" value="Register"></form></td></tr>
-				<br>
-				<form method="POST" action="simulation.php"><input type="submit" value="Simulation"></form>
+			<tr><td>&nbsp;</td><td><form method="POST" action="sim/index.php"><input type="submit" value="Simulation"></form></td></tr>
 			</table>
 		</div>
 	</body>

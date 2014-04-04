@@ -1,6 +1,6 @@
 <?php
 	session_start();
-		include('config.inc'); 
+		include('../config.inc'); 
 				$sid=$_SESSION['floor']*100+$_POST['spot'];
 				$query2 = "SELECT * FROM occupancy WHERE psensorid ='$sid'";
 				$result2 = mysql_query($query2);
