@@ -24,6 +24,8 @@ Current features that have been <i>implemented</i> in the design include:
 
 -Ability to extend a reservation
 
+-Improving the payment feature (putting the payment feature on a completely seperate page)
+
 -Implement the functionality of regular and oversized cars
 
 -Addition of a second elevator
