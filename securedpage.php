@@ -83,6 +83,12 @@
 			Reservation ID: <input type="text" name="reservationID" size="10" maxlength="10">
 			<input type="submit" value="Delete">
 			</form>
+
+			<form method="POST" action="extendreservation.php">
+			To extend a reservation, type the Reservation ID in the box and press Extend to proceed:<br>
+			Reservation ID: <input type="text" name="reservationID" size="10" maxlength="10">
+			<input type="submit" value="Extend">
+			</form>
 			
 		<?php } //end if statement ?>
 		
@@ -107,7 +113,7 @@
 			?>
 		</font>
 
-		<br /><br />Click on the button below to create a new reservation:<br /><br />
+		<br />Click on the button below to create a new reservation:<br /><br />
 		
 		<form method="POST" action="reservation.php"><input type="submit" value="Create a Reservation"></form>
 
