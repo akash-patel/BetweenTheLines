@@ -38,13 +38,27 @@
 
 ?>
 
-	<form method="POST" action="checkextendreservation.php">
-	<br>Please select the amount of time you would like the reservation to be extended for:
-	<select name = 'extendhours'>
-		<option value="15">15 Minutes</option>
-		<option value="30">30 Minutes</option>
-		<option value="45">45 Minutes</option>
-		<option value="60">60 Minutes</option>
-	</select>
-	<input type="submit" value="Extend">
-	</form>
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Extending Reservation <?php echo $reservationid;?></title>
+	</head>
+
+	<body>
+
+		<form method="POST" action="checkextendreservation.php">
+		<br>Please select the amount of time you would like the reservation to be extended for:
+		<select name = 'extendhours'>
+			<option value="15">15 Minutes</option>
+			<option value="30">30 Minutes</option>
+			<option value="45">45 Minutes</option>
+			<option value="60">60 Minutes</option>
+		</select>
+		<input type="submit" value="Extend">
+		</form>
+
+	</body>
+</html>
+
+	

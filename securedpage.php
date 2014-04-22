@@ -17,7 +17,7 @@
 
 	<body style= "background-color: #F0F0F0 "></body>
 	<head>
-		<title>Secured Page</title>
+		<title><?php  echo $_SESSION['username'] . "'s Portal";?></title>
 	</head>
 
 	<body>
