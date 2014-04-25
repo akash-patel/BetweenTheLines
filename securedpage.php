@@ -35,14 +35,16 @@
 
 			echo 'Thank you for logging into your portal, ' . mysql_result($result, 0,'firstname') . '.<br /><br />';
 
-			$query = "SELECT * FROM reservations  WHERE username = '$username' ORDER BY startdatetimesec";
+			$currenttime = strtotime("now");
+
+			$query = "SELECT * FROM reservations  WHERE username = '$username' AND enddatetimesec > $currenttime ORDER BY startdatetimesec";
 			$result = mysql_query($query);
 
 			if (!$result) die ("Database access failed: " . mysql_error());
 
 			$rows = mysql_num_rows($result);
 
-			echo "You currently have $rows reservation(s)." . '<br /><br />';
+			echo "You currently have $rows current reservation(s)." . '<br /><br />';
 
 		?>	
 		<?php if ($rows != 0) { //don't display table if there are no reservations?> 
