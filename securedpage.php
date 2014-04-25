@@ -25,8 +25,7 @@
 		<?php
 
 			/*Display the user's information, as well as the the number of reservations and their current reservations.
-			Currently only the user's reservationIDs are pulled, we need to get it so that the user's other reservation
-			information is also displayed.*/
+			Currently all of the reservations are pulled (including old reservations), not just the current ones*/
 
 			$username = $_SESSION['username'];
 			$query = "SELECT firstname FROM users  WHERE username = '$username'";
@@ -36,7 +35,7 @@
 
 			echo 'Thank you for logging into your portal, ' . mysql_result($result, 0,'firstname') . '.<br /><br />';
 
-			$query = "SELECT * FROM reservations  WHERE username = '$username'";
+			$query = "SELECT * FROM reservations  WHERE username = '$username' ORDER BY startdatetimesec";
 			$result = mysql_query($query);
 
 			if (!$result) die ("Database access failed: " . mysql_error());
@@ -48,9 +47,9 @@
 		?>	
 		<?php if ($rows != 0) { //don't display table if there are no reservations?> 
 		
-			Here are your current reservations:
+			Here are your current reservations (this only includes reservations that are in progress or have not yet started):
 
-			<table style="width:600px">
+			<table style="width:800px">
 				
 				<tr>
 			
@@ -70,6 +69,18 @@
 						<td><?php echo mysql_result($result, $j,'licenseplate'); ?></td>
 						<td><?php echo mysql_result($result, $j,'startdatetime'); ?></td>
 						<td><?php echo mysql_result($result, $j,'enddatetime'); ?></td>
+						<td>
+							<form method="POST" action="deletereservation.php">
+								<input type="hidden" name="reservationID" value="<?php echo mysql_result($result, $j,'reservationid') ?>">
+								<input type="submit" value="Delete">
+							</form>
+						</td>
+						<td>
+							<form method="POST" action="extendreservation.php">
+								<input type="hidden" name="reservationID" value="<?php echo mysql_result($result, $j,'reservationid') ?>">
+								<input type="submit" value="Extend">
+							</form>
+						</td>
 					</tr>
 
 				<?php } ?>
@@ -78,17 +89,6 @@
 
 
 			<br>
-			<form method="POST" action="deletereservation.php">
-			To delete a reservation, type the Reservation ID in the box and press Delete:<br>
-			Reservation ID: <input type="text" name="reservationID" size="10" maxlength="10">
-			<input type="submit" value="Delete">
-			</form>
-
-			<form method="POST" action="extendreservation.php">
-			To extend a reservation, type the Reservation ID in the box and press Extend to proceed:<br>
-			Reservation ID: <input type="text" name="reservationID" size="10" maxlength="10">
-			<input type="submit" value="Extend">
-			</form>
 			
 		<?php } //end if statement ?>
 		
