@@ -10,6 +10,7 @@
 
 	$reservationid = $_POST['reservationID'];
 	$username = $_SESSION['username'];
+	$_SESSION['reservationid'] = $reservationid;
 
 	/*Figures out if the reservationid belongs to the user to determine if it can be extended*/
 	$query = "SELECT * FROM reservations  WHERE reservationid = '$reservationid' and username = '$username'";
@@ -49,7 +50,7 @@
 
 		<form method="POST" action="checkextendreservation.php">
 		<br>Please select the amount of time you would like the reservation to be extended for:
-		<select name = 'extendhours'>
+		<select name = 'extensionTime'>
 			<option value="15">15 Minutes</option>
 			<option value="30">30 Minutes</option>
 			<option value="45">45 Minutes</option>
