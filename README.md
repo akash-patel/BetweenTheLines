@@ -20,9 +20,9 @@ Current features that have been <i>implemented</i> in the design include:
 
 -Parking Simulation
 
-<b>Features that are currently being developed:</b> (These features are hope to be implemented by early May 2014)
+-Ability to extend a reservation (Payment feature for this still needs work)
 
--Ability to extend a reservation
+<b>Features that are currently being developed:</b> (These features are hope to be implemented by early May 2014)
 
 -Improving the payment feature (putting the payment feature on a completely seperate page)
 
@@ -33,3 +33,9 @@ Current features that have been <i>implemented</i> in the design include:
 -Create a mobile application with capabilities similar to the website
 
 -Work on creating a database with a foreign key along with better database organization
+
+-Graphics
+
+-Making website more user friendly and easier to navigate; reduce the number of clicks necessary to achieve a task
+
+-Developing an admin portal to allow for adminstrators to view all reservations and modify/add reservations
