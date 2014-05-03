@@ -28,8 +28,7 @@
 		
 		<?php
 
-			/*Display the user's information, as well as the the number of reservations and their current reservations.
-			Currently all of the reservations are pulled (including old reservations), not just the current ones*/
+			/*Display the user's information, as well as the the number of reservations and their current reservations.*/
 
 			$username = $_SESSION['username'];
 			$query = "SELECT firstname FROM users  WHERE username = '$username'";
@@ -98,7 +97,7 @@
 			
 		<?php } //end if statement ?>
 		
-		<!--Prints an error if incorrect ReservationID -->
+		<!--Prints success or error message -->
 		<font color="green">
 			<?php 
 				if (isset($_SESSION['success']))
@@ -118,6 +117,8 @@
 				}
 			?>
 		</font>
+
+		<form method="POST" action="viewallreservations.php"><input type="submit" value="View All Reservations"></form>
 
 		<br />Click on the button below to create a new reservation:<br /><br />
 		
