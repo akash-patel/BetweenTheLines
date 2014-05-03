@@ -6,6 +6,7 @@
 	// Include database connection settings
 	include('config.inc');
 	include('functions.php');
+	include('header.php');
 
 	// Check, if username session is NOT set then this page will jump to login page
 	if (!isset($_SESSION['username'])) {
@@ -17,7 +18,6 @@
 
 <!DOCTYPE html>
 <html>
-	<body style= "background-color: #F0F0F0 "></body>
 	<head>
 		<title>Reservation - Between the Lines</title>
 	</head>
@@ -232,3 +232,5 @@
 
 	</body>
 </html>
+
+<?php include('footer.php');?>

@@ -5,6 +5,7 @@
 
 	// Include database connection settings
 	include('config.inc');
+	include('header.php');
 
 	// Check, if username session is NOT set then this page will jump to login page
 	if (!isset($_SESSION['username'])) {
@@ -15,7 +16,6 @@
 ?>
 
 <html>
-	<body style= "background-color: #F0F0F0 "></body>
 	<head>
 		<title>Admin Controls</title>
 	</head>
@@ -56,3 +56,5 @@
 	if (!$result) die ("Database access failed: " . mysql_error());
 */
 ?>
+
+<?php include('footer.php');?>

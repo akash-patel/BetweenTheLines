@@ -5,6 +5,7 @@
 
 	// Include database connection settings
 	include('config.inc');
+	include('header.php');
 
 	$_SESSION['error'] = NULL;
 
@@ -59,7 +60,12 @@
 		<input type="submit" value="Extend">
 		</form>
 
+		<br><font color="red">
+			Your credit card on file for the reservation will be charged accordingly
+			prorated at $10/hour.
+		</font><br>
+
 	</body>
 </html>
 
-	
+<?php include('footer.php');?>

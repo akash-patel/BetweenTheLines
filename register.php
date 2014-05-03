@@ -8,10 +8,11 @@
 		header('Location: securedpage.php');
 	}
 
+	include('header.php');
+
 ?>
 
 <html>
-	<body style= "background-color: #F0F0F0 "></body>
 	<head>
 		<title>Between the Lines - Reserve, Pay, and Park!</title>
 	</head>
@@ -51,5 +52,6 @@
 
 	</body>
 
-
 </html>
+
+<?php include('footer.php');?>

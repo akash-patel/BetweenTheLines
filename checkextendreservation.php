@@ -48,5 +48,4 @@
 	header('Location: securedpage.php');
 	exit;
 
-
 ?>

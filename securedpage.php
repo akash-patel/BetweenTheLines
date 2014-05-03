@@ -5,6 +5,7 @@
 
 	// Include database connection settings
 	include('config.inc');
+	include('header.php');
 
 	// Check, if username session is NOT set then this page will jump to login page
 	if (!isset($_SESSION['username'])) {
@@ -19,7 +20,6 @@
 
 <html>
 
-	<body style= "background-color: #F0F0F0 "></body>
 	<head>
 		<title><?php  echo $_SESSION['username'] . "'s Portal";?></title>
 	</head>
@@ -129,3 +129,5 @@
 	</body>
 
 </html>
+
+<?php include('footer.php');?>
