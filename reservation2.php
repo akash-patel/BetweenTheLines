@@ -5,6 +5,7 @@
 
 	// Include database connection settings
 	include('config.inc');
+	include('functions.php');
 
 	// Check, if username session is NOT set then this page will jump to login page
 	if (!isset($_SESSION['username'])) {
@@ -26,11 +27,6 @@
 
 
 		<?php
-
-			function calculate_cost($time){
-				/*Cost is calculated at $10 an hour*/
-				return $time / 360;
-			}
 
 			if (isset($_POST['vehiclesize'])){
 
