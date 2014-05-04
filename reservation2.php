@@ -32,20 +32,16 @@
 
 				$vehiclesize = $_POST['vehiclesize'];
 				$_SESSION['vehiclesize'] = $vehiclesize;
-
-				$startmonth = $_POST['startmonth'];			
-				$startday = $_POST['startday'];
-				$startyear = $_POST['startyear'];
+			
+				$startdate = $_POST['startdate'];
 				$starttime = $_POST['starttime'];
-				$endmonth = $_POST['endmonth'];
-				$endday = $_POST['endday'];
-				$endyear = $_POST['endyear'];
+				$enddate = $_POST['enddate'];
 				$endtime = $_POST['endtime'];
 
 				//Format used below: YYYY-MM-DD HH:MM:SS
-				$startdatetime = $startyear . '-' . $startmonth . '-' . $startday . ' ' . $starttime;
+				$startdatetime = $startdate . ' ' . $starttime;
 				$_SESSION['startdatetime'] = $startdatetime;
-				$enddatetime = $endyear . '-' . $endmonth . '-' . $endday . ' ' . $endtime;
+				$enddatetime = $enddate . ' ' . $endtime;
 				$_SESSION['enddatetime'] = $enddatetime;
 
 				$startdatetimesec = strtotime($startdatetime);
@@ -53,7 +49,7 @@
 				$enddatetimesec = strtotime($enddatetime);
 				$_SESSION['enddatetimesec'] = $enddatetimesec;
 
-				if ( $vehiclesize == '-1' or $startmonth == '-1' or $startday == '-1' or $startyear == '-1' or $starttime == '-1' or $endmonth == '-1' or $endday == '-1' or $endyear == '-1' or $endtime == '-1') {
+				if ( $vehiclesize == '-1' or $starttime == '-1'or $endtime == '-1') {
 					$_SESSION['error'] = "Error: Please enter all fields.";
 					header('Location: reservation.php');
 					exit;
@@ -85,8 +81,9 @@
 				header('Location: reservation.php');
 				exit;
 			}
-
+			
 			$max_spots = 5;		// the max spots in garage is set to 5 for small-scale testability
+
 			/* time/900 represents the number of 15 minute intervals. This is because
 			time is in seconds and the 15 minutes is 900 seconds*/
 			for ($i = $startdatetimesec; $i < $enddatetimesec ; $i+=900) {
@@ -108,7 +105,7 @@
 				}
 			}
 
-			echo "You have selected to create reservation for a(n) " . strtolower($vehiclesize) . " sized vehicle is between " . $startdatetime. ' and ' . $enddatetime . ".<br /><br />";
+			echo "You have selected to create reservation for a(n) " . strtolower($vehiclesize) . " sized vehicle is between " . $startdatetime . ' and ' . $enddatetime . ".<br /><br />";
 
 			echo "You will be charged for " . floor($time / 3600) . " hour(s) and " . ($time % 3600) / 60 . " minute(s) in the garage. ";
 

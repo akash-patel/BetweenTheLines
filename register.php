@@ -38,7 +38,7 @@
 			<form method="POST" action="registerproc.php">
 			<tr><td>First Name:</td><td><input type="text" name="firstname" size="20"></td></tr>
 			<tr><td>Last Name:</td><td><input type="text" name="lastname" size="20"></td></tr>
-			<tr><td>Email Address:</td><td><input type="text" name="email" size="20"></td></tr>
+			<tr><td>Email Address:</td><td><input type="email" name="email" size="20"></td></tr>
 			<tr><td>Username:</td><td><input type="text" name="username" size="20"></td></tr>
 			<tr><td>Password:</td><td><input type="password" name="password" size="20"></td></tr>
 			<tr><td>Confirm Password:</td><td><input type="password" name="password2" size="20"></td></tr>
