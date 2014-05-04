@@ -86,6 +86,7 @@
 				exit;
 			}
 
+			$max_spots = 5;		// the max spots in garage is set to 5 for small-scale testability
 			/* time/900 represents the number of 15 minute intervals. This is because
 			time is in seconds and the 15 minutes is 900 seconds*/
 			for ($i = $startdatetimesec; $i < $enddatetimesec ; $i+=900) {
@@ -98,8 +99,8 @@
 
 				$rows = mysql_num_rows($result);
 
-				if ( $rows >= 5 ) { 
-					/*This number 5 should represent the maxmium number of spots 
+				if ( $rows >= $max_spots ) { 
+					/*This number $max_spots should represent the maxmium number of spots 
 					in the parking garage*/
 					$_SESSION['error'] = "Not enough room in the garage";
 					header('Location: reservation.php');
