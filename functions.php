@@ -5,7 +5,17 @@
 
 	function calculate_cost($time){
 		/*Cost is calculated at $10 an hour*/
-		return $time / 360;
+		$hours = $time / 3600;
+		if ($hours <= 2 )
+			$cost = $hours * 5;
+		else if ( $hours <= 6 )
+			$cost =  10 + ($hours-2) * 3;
+		else if ( $hours <= 12 )
+			$cost = 22 + ($hours - 6) * 2;
+		else
+			$cost = 34 + $hours - 12;
+
+		return $cost;
 	}
 
 	function is_valid_luhn($number) {

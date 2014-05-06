@@ -62,7 +62,7 @@
 
 		<br><font color="red">
 			Your credit card on file for the reservation will be charged accordingly
-			prorated at $10/hour.
+			prorated at $5/hour.
 		</font><br>
 
 	</body>
