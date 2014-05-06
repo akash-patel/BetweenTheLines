@@ -8,9 +8,10 @@
 
 	$_SESSION['error'] = NULL;
 	$lc=$_POST['lname'];
+	$state = $_POST['state'];
 	//$level=$_POST['floor'];
 	// Retrieve row from database according to user's input
-	$query = "SELECT * FROM reservations  WHERE licenseplate = '$lc'";
+	$query = "SELECT * FROM reservations  WHERE licenseplate = '$lc' AND state = '$state' AND completed='0' ORDER BY startdatetimesec ASC";
 			$result = mysql_query($query);
 	if (!$result) die ("Database access failed: " . mysql_error());
 	

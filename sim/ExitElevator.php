@@ -2,16 +2,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simulation: License Plate Scanner</title>
+    <title>Simulation: Exit License Plate Scanner</title>
     <link rel="stylesheet" href="../../css/foundation.css" />
     <script src="../../js/vendor/modernizr.js"></script>
   </head>
  
 <body style="background-color:#F0F0F0;">
 <div class="large-4 large-centered columns" align="center">
-	<h1> Simulate License Plate Scanner</h1>
-	<form method="POST" action="LicenseProc.php">
+	<h1> Simulate Exit License Plate Scanner</h1>
+	<form method="POST" action="LicenseExitProc.php">
 		Please select the state of your vehicle's license plate:
+		<div class="large-6 large-centered columns" align="center">
 			<select name = "state">
 				<option value="Alabama">Alabama</option>
 				<option value="Alaska">Alaska</option>
@@ -66,9 +67,12 @@
 				<option value="Wyoming">Wyoming</option>						
 			</select>	
 
+ 	Current Date: <input type="date" name="day">
+  	Current Time: <input type="time" name="usr_time">
+
 	Enter License Plate: <input type="text" name="lname"><br>
 	<!--Enter Floor: <input type="text" name="floor"><br>-->
-	<input name="newThread2" type="submit" class="button" value="Submit"/>
+	<input name="newThread2" type="submit" class="button" value="Submit"/><br>
 </form>
 			<font color="red">
 				<?php 
@@ -80,6 +84,7 @@
 					}
 				?>
 			</font>
+</div>
 </div>
 </body>
 	    <script src="../../js/vendor/jquery.js"></script>

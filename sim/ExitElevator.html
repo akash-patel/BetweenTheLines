@@ -2,15 +2,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simulation: License Plate Scanner</title>
+    <title>Simulation: Exit License Plate Scanner</title>
     <link rel="stylesheet" href="../../css/foundation.css" />
     <script src="../../js/vendor/modernizr.js"></script>
   </head>
  
 <body style="background-color:#F0F0F0;">
 <div class="large-4 large-centered columns" align="center">
-	<h1> Simulate License Plate Scanner</h1>
-	<form method="POST" action="LicenseProc.php">
+	<h1> Simulate Exit License Plate Scanner</h1>
 		Please select the state of your vehicle's license plate:
 			<select name = "state">
 				<option value="Alabama">Alabama</option>
@@ -65,7 +64,7 @@
 				<option value="Wisconsin">Wisconsin</option>
 				<option value="Wyoming">Wyoming</option>						
 			</select>	
-
+<form method="POST" action="LicenseExitProc.php">
 	Enter License Plate: <input type="text" name="lname"><br>
 	<!--Enter Floor: <input type="text" name="floor"><br>-->
 	<input name="newThread2" type="submit" class="button" value="Submit"/>

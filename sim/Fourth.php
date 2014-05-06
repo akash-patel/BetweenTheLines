@@ -1,5 +1,12 @@
-<HTML>
-<title>Simulation: Elevator</title>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulation: Elevator</title>
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <script src="../../js/vendor/modernizr.js"></script>
+  </head>
+
 <div align="center">
 <h1>Welcome to the Elevator</h1>
 <P> Please wait while we take you to the next available floor.</P>
@@ -28,8 +35,8 @@
 </script>
 
 <b><font color="green">Current floor <span id="countdown">1</span>.</font></b>
-<br>
-<input name="continue" id="continue" type="button" value="Exit Elevator" onclick="window.open('photosensor.php', '_parent')"/>
+<br><br>
+<input name="continue" id="continue" class="button" value="Exit Elevator" onclick="window.open('photosensor.php', '_parent')"/>
 <script type="text/javascript">
 var a = <?=$_SESSION['floor']?>;
 var b = a*1000;
@@ -47,4 +54,10 @@ setTimeout
 </script>
 </div>
 
+        <script src="../../js/vendor/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
 </HTML>
+

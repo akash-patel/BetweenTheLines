@@ -1,5 +1,11 @@
-<HTML>
-<title>Simulation: Photosensor</title>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulation: Photosensor</title>
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <script src="../../js/vendor/modernizr.js"></script>
+  </head>
 <div align="center">
 <h1>Photosensor simulation</h1>
 
@@ -39,7 +45,7 @@ function print_array($title,$array){
              echo $title." is not an array.";
         }
 }
-for ($i=0; $i <44; $i++)
+for ($i=0; $i <=44; $i++)
 {
 if (($array[$i]-($_SESSION['floor']*100) <10) && ($array[$i]-($_SESSION['floor']*100) >=0))
 {
@@ -114,30 +120,50 @@ function btnClick(checkedValue) {
 	<form method="POST" action="updateoccupancy.php">
     <table id = "mytable" width="100%" border="1" cellpadding="3" cellspacing="2" style="background-color: #ffffff;">
       <tr valign="top">
-      <td class = "td" ><input type="submit" name="spot" value="1" /><br />  </td>
-      <td class = "td" ><input type="submit" name="spot" value="2" /><br />  </td>
-	  <td class = "td" ><input type="submit" name="spot" value="3" /><br />  </td>
+      <td class = "td" ><input type="submit" class="button tiny expand" style="color: transparent; background-color: transparent; border-color: transparent;" name="spot" value="1" /><br />  </td>
+      <td class = "td" ><input type="submit" class="button tiny expand" style="color: transparent; background-color: transparent; border-color: transparent;" name="spot" value="2" /><br />  </td>
+	  <td class = "td" ><input type="submit" class="button tiny expand" style="color: transparent; background-color: transparent; border-color: transparent;" name="spot" value="3" /><br />  </td>
       </tr>
       <tr valign="top">
-      <td class = "td" ><input type="submit" name="spot" value="4" /><br />  </td>
-      <td class = "td" ><input type="submit" name="spot" value="5" /><br />  </td>
-	  <td class = "td" ><input type="submit" name="spot" value="6" /><br />  </td>
+      <td class = "td" ><input type="submit" class="button tiny expand" style="color: transparent; background-color: transparent; border-color: transparent;" name="spot" value="4" /><br />  </td>
+      <td class = "td" ><input type="submit" class="button tiny expand" style="color: transparent; background-color: transparent; border-color: transparent;" name="spot" value="5" /><br />  </td>
+	  <td class = "td" ><input type="submit" class="button tiny expand" style="color: transparent; background-color: transparent; border-color: transparent;" name="spot" value="6" /><br />  </td>
       </tr>
 	  <tr valign="top">
-      <td class = "td" ><input type="submit" name="spot" value="7" /><br />  </td>
-      <td class = "td" ><input type="submit" name="spot" value="8" /><br />  </td>
-	  <td class = "td" ><input type="submit" name="spot" value="9" /><br />  </td>
+      <td class = "td" ><input type="submit" class="button tiny expand" style="color: transparent; background-color: transparent; border-color: transparent;" name="spot" value="7" /><br />  </td>
+      <td class = "td" ><input type="submit" class="button tiny expand" style="color: transparent; background-color: transparent; border-color: transparent;" name="spot" value="8" /><br />  </td>
+	  <td class = "td" ><input type="submit" class="button tiny expand" style="color: transparent; background-color: transparent; border-color: transparent;" name="spot" value="9" /><br />  </td>
       </tr>
     </table>
-	</form>
+	</form><br>
+	<font color="green">
+		<?php 
 
-	<form action="Third.php">
-	<input name="return" type="submit" value="Return to License Scanner"/>
-	</form>
+			if (isset($_SESSION['update']))
+			{
+				echo $_SESSION['update'] . '<br /><br />';
+				$_SESSION['update'] = NULL;
+			}
+		?>
+	</font>
+	<br>
+	<div class="large-4 columns">
+		<form action="../../index.html">
+			<input name="return" type="submit" class="button" value="Home"/>
+			</form>
+	</div>
+	<div class="large-4 columns" align="center">
+		<form action="ExitElevator.php">
+			<input name="return" type="submit" class="button" value="Exit Garage"/>
+		</form>
+	</div>
+<div class="large-4 columns" align="center">
 
+<div class="panel">
+	<p>
 	<b>ADMIN ACTIONS: <br/></b>
 	<form method="POST" action="adminProc.php">
-	  Choose a floor: <select name = "floor">
+	  Choose a floor: <select name = "floor" >
 	    <option value="1">1</option>
 	    <option value="2">2</option>
 	    <option value="3">3</option>
@@ -145,19 +171,17 @@ function btnClick(checkedValue) {
 	    <option value="5">5</option>
 	  </select>
 	  
-	  <input name="changeFloor" type="submit" value="Submit"/>
- </div>
-</tr>
-<br>
-<?php 
-
-					if (isset($_SESSION['update']))
-					{
-						echo $_SESSION['update'] . '<br /><br />';
-						$_SESSION['update'] = NULL;
-					}
-?>
-  </body>
-</html>
+	  <input name="changeFloor" type="submit" class="button tiny" value="Submit"/>
 </div>
+</div>
+</p>
+</div>
+</tr>
+  </body>
+
+	    <script src="../../js/vendor/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
 </HTML>
