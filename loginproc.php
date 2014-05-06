@@ -17,6 +17,10 @@
 		// Set username session variable
 		$_SESSION['username'] = $_POST['username'];
 		// Jump to secured page
+		if (strtolower( $_SESSION['username'] ) == "admin"){
+			header('Location: admin.php');
+			exit;	
+		}
 		header('Location: securedpage.php');
 	}
 	else {

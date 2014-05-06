@@ -12,10 +12,6 @@
 		header('Location: index.php');
 	}
 
-	if ($_SESSION['username'] == "Admin"){
-		header('Location: admin.php');
-	}
-
 ?>
 
 <html>
