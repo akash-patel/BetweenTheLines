@@ -19,6 +19,10 @@
 		$query = "SELECT SUBSTRING(psensorid,1,1) FROM occupancy WHERE istaken='0' LIMIT 1";
 		$result = mysql_query($query);
 		if (!$result) die ("Database access failed: " . mysql_error());
+
+		$query = "UPDATE reservations SET completed='1' WHERE licenseplate = '$lc' AND state = '$state' AND completed='0' ORDER BY enddatetimesec ASC LIMIT 1";
+		$result2 = mysql_query($query);
+		if (!$result2) die ("Database access failed: " . mysql_error());
 		
 		$_SESSION['floor']=mysql_result($result, 0);
 		header('Location: Fourth.php');

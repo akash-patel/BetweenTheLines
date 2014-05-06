@@ -15,7 +15,7 @@ $fulltime = strtotime($date . $time);
 //$level=$_POST['floor'];
 // Retrieve row from database according to user's input
 
-$query = "SELECT * FROM reservations  WHERE licenseplate = '$lc' AND state = '$state' AND completed = '0' ORDER BY enddatetimesec ASC";
+$query = "SELECT * FROM reservations  WHERE licenseplate = '$lc' AND state = '$state' AND completed = '1' ORDER BY enddatetimesec ASC";
 $result = mysql_query($query);
 if (!$result) die ("Database access failed: " . mysql_error());
 
@@ -45,7 +45,7 @@ $_SESSION['floor']=mysql_result($result, 0);
 		$_SESSION['cost']= "You left ".$hour." hour(s) and ".$minute." minute(s) before your reservation ended. Your refund is $".$totalMoney; //Refund you get
 
 
-	$query = "UPDATE reservations SET completed='1' WHERE licenseplate = '$lc' AND state = '$state' AND completed='0' ORDER BY enddatetimesec ASC LIMIT 1";
+	$query = "UPDATE reservations SET completed='2' WHERE licenseplate = '$lc' AND state = '$state' AND completed='1' ORDER BY enddatetimesec ASC LIMIT 1";
 	$result = mysql_query($query);
 	if (!$result) die ("Database access failed: " . mysql_error());
 
