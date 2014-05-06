@@ -6,14 +6,12 @@
 	function calculate_cost($time){
 		/*Cost is calculated at $10 an hour*/
 		$hours = $time / 3600;
-		if ($hours <= 2 )
+		if ($hours <= 2 )					// $5 per hour for first 2 hours
 			$cost = $hours * 5;
-		else if ( $hours <= 6 )
+		else if ( $hours <= 6 )				// $3 per additional hour up to 6
 			$cost =  10 + ($hours-2) * 3;
-		else if ( $hours <= 12 )
+		else 								// $2 per additional hour after that
 			$cost = 22 + ($hours - 6) * 2;
-		else
-			$cost = 34 + $hours - 12;
 
 		return $cost;
 	}
