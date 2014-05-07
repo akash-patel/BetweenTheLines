@@ -92,8 +92,6 @@
 	<br><br><input type="button" onClick="window.print()" value="Print This Page"/>
 
 	<p>Click <a href="securedpage.php">here</a> to return your portal.</p>
-	<p><a href="logout.php">Logout</a></p>
-
 	</body>
 </html>
 

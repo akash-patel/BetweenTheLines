@@ -43,6 +43,8 @@
 				<option value="Oversized">Oversized</option>
 			</select>
 
+
+
 			<br><br> Select a start date for your reservation:
 			<input type="date" name="startdate">
 
@@ -258,9 +260,6 @@
 		</form>
 
 	</div>
-
-	<p><a href="logout.php">Logout</a></p>
-
 	</body>
 </html>
 
