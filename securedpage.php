@@ -119,8 +119,6 @@
 		<br />Click on the button below to create a new reservation:<br /><br />
 		
 		<form method="POST" action="reservation.php"><input type="submit" value="Create a Reservation"></form>
-
-		<p><a href="logout.php">Logout</a></p>
 		
 	</body>
 
