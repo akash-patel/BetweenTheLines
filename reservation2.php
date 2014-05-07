@@ -82,7 +82,7 @@
 				exit;
 			}
 			
-			$max_spots = 5;		// the max spots in garage is set to 5 for small-scale testability
+			$max_spots = 45;		// the max spots in garage is set to 5 for small-scale testability
 
 			/* time/900 represents the number of 15 minute intervals. This is because
 			time is in seconds and the 15 minutes is 900 seconds*/
