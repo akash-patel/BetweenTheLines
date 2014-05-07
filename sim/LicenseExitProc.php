@@ -22,12 +22,12 @@ if (!$result) die ("Database access failed: " . mysql_error());
 $endtime = mysql_result($result, 0, 'enddatetimesec');
 if ($fulltime>$endtime)	{
 	$timedifference=$fulltime-$endtime;
-	$totalMoney=round($timedifference*0.004167,2);
+	$totalMoney=round($timedifference*(7/3600),2);
 	$money=1;	//get charged money
 }
 else {
 	$timedifference=$endtime-$fulltime;
-	$totalMoney=round($timedifference*0.001389,2);
+	$totalMoney=round($timedifference*(1/3600),2);
 	$money=0; //get refund
 }
 	$hour=floor($timedifference/3600);
