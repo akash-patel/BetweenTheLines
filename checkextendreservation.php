@@ -28,8 +28,9 @@
 		if (!$result) die ("Database access failed: " . mysql_error());
 
 		$rows = mysql_num_rows($result);
+		$max_spots = 45;
 
-		if ( $rows >= 5 ) { 
+		if ( $rows >= $max_spots ) { 
 			/*This number 5 should represent the maxmium number of spots 
 			in the parking garage*/
 			$_SESSION['error'] = "There is not enough room in the garage to extend!";
