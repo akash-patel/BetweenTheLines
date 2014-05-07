@@ -5,7 +5,7 @@
 		<tr>
 			<td><a href="securedpage.php"><img src="BetweenTheLines.gif"></a></td>
 			<?php if (isset( $_SESSION['username'] )){ ?>
-				<td><form display:"inline" method="POST" action="logout.php"><input type="submit" value="Logout"></form></td>
+				<td><form method="POST" action="logout.php"><input type="submit" value="Logout"></form></td>
 			<?php } ?>
 		</tr>
 	</table>
