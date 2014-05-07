@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<link rel="icon" href="btl_fav.ico">
+	<link rel="icon" href="fav.gif">
 	<table>
 		<tr>
 			<td><a href="securedpage.php"><img src="BetweenTheLines.gif"></a></td>
