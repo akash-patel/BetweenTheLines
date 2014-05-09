@@ -40,6 +40,6 @@ Note: This website is optimized for HTML5. Users who are using browsers that do 
 
 -Adding features similar to the website to the mobile application
 
--Graphics and ease of us
+-Graphics and ease of use
 
 -Having the elevator direct the user to the appropriate available spot
