@@ -12,7 +12,7 @@ This repository contains all the files necessary to run the website.
 This code can be hosted locally using a program like XAMPP to host an Apache and MySQL server.
 The website is also hosted and can be accessed via http://whiteledge.com which is periodically updated, this was last updated in preparation for the second demo.
 
-Note: This website is optimized for HTML5. Users who are using browsers that do not incorporate HTML5 may find issues with certain features such as the date chooser. We recommend using <i><b>Google Chrome</b></i> when on the webiste for the best experience.
+Note: This website is optimized for HTML5. Users who are using browsers that do not incorporate HTML5 may find issues with certain features such as the date chooser. We recommend using <i><b>Google Chrome</b></i> when on the website for the best experience.
 
 <h3>Features that have been implemented:</h3>
 
