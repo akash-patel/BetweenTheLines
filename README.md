@@ -6,36 +6,40 @@ This repository is for Software Engineering 332:452.
 
 Demo 1 for this project was presented in the EIT Lab in the Engineering Building on April 1, 2014, 10:30 AM - 11:00 AM
 
+Demo 2 for this project was presented in the EIT Lab in the Engineering Building on May 7, 2014, 2:00 PM - 2:30 PM
+
 This repository contains all the files necessary to run the website.
 This code can be hosted locally using a program like XAMPP to host an Apache and MySQL server.
-The website is also hosted and can be accessed via http://whiteledge.com which is periodically updated.
+The website is also hosted and can be accessed via http://whiteledge.com which is periodically updated, this was last updated in preparation for the second demo.
 
-Current features that have been <i>implemented</i> in the design include:
+Note: This website is optimized for HTML5. Users who are using browsers that do not incorporate HTML5 may find issues with certain features such as the date chooser. We recommend using <i><b>Google Chrome</b></i> when on the webiste for the best experience.
+
+<h3>Features that have been implemented:</h3>
 
 -Registration
 
 -Reservation (Creating & Deleting)
 
--Elevator Simulation
+-Elevator Simulation (Vehicle entering the garage and being directed to the appropriate floor)
 
--Parking Simulation
+-Parking Simulation (Vehicle selecting a spot in the garage after arriving to appropriate floor)
 
--Ability to extend a reservation (Payment feature for this still needs work)
+-Vehicle Exiting (Vehicle leaving its spot in the garage and determining if it is leaving early/late)
 
-<b>Features that are currently being developed:</b> (These features are hope to be implemented by early May 2014)
+-Ability to extend a reservation
 
--Improving the payment feature (putting the payment feature on a completely seperate page)
+-Creating a mobile application
 
--Implement the functionality of regular and oversized cars
+-Administrative portal to allow for quick adding of reservations for easier testing
+
+<h3>Suggestions for future improvement:</h3>
+
+-Implementing the functionality of regular and oversized cars
 
 -Addition of a second elevator
 
--Create a mobile application with capabilities similar to the website
+-Adding features similar to the website to the mobile application
 
--Work on creating a database with a foreign key along with better database organization
+-Graphics and ease of us
 
--Graphics
-
--Making website more user friendly and easier to navigate; reduce the number of clicks necessary to achieve a task
-
--Developing an admin portal to allow for adminstrators to view all reservations and modify/add reservations
+-Having the elevator direct the user to the appropriate available spot
